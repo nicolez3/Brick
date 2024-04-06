@@ -7,10 +7,8 @@ using UnityEngine;
 public class Paddle : MonoBehaviour
 {
 
-    private Vector2 direction;
-
-    bool goingLeft;
-    bool goingRight;
+    bool isBeingHeld;
+  
 
     // Start is called before the first frame update
     void Start()
@@ -21,30 +19,30 @@ public class Paddle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.D)) 
+
+        if (isBeingHeld)
         {
-            direction = Vector2.right;
+            Vector2 mousePos;
+            mousePos = Input.mousePosition;
+            mousePos = Camera.main.ScreenToWorldPoint(mousePos);
 
+            gameObject.transform.localPosition = new Vector2(mousePos.x, transform.position.y);
         }
-        else if (Input.GetKey(KeyCode.A))
-        {
-            direction = Vector2.left;
-        }
-
-        else
-        {
-            direction = Vector2.zero;
-        }
-
-        transform.position = new Vector2
-        ((transform.position.x + direction.x), transform.position.y + direction.y);
-
-
     }
+        void OnMouseDown()
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                Vector2 mousePos;
+                mousePos = Input.mousePosition;
+                isBeingHeld = true;
+                Debug.Log("click");
+            }
+        }
 
-    void FixedUpdates()
-    {
+        private void OnMouseUp()
+        {
+            isBeingHeld = false;
 
-
+        }
     }
-}

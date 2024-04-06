@@ -5,8 +5,8 @@ using UnityEngine;
 public class Ball : MonoBehaviour
 {
 
-    public float xSpeed = 1.5f;
-    public float ySpeed = 1.5f;
+    public float xSpeed = 0.05f;
+    public float ySpeed = 0.05f;
 
     public float xBorder = 0f;
     public float yBorder = 4.5f;
