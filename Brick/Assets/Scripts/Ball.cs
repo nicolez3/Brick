@@ -35,6 +35,7 @@ public class Ball : MonoBehaviour
         {
             xMove = false; 
         }
+        
         else if (transform.position.x <= -xBorder)
         {
             xMove = true;
@@ -53,4 +54,12 @@ public class Ball : MonoBehaviour
         else if (transform.position.y <= -yBorder)
         { yMove = true; }
     }
+
+     void OnTriggerEnter2D (Collider2D other){
+     if (other.tag == "padde")
+        {
+            transform.position = new Vector2(transform.position.x, transform.position.y + ySpeed);
+        }
+    }
+   
 }
